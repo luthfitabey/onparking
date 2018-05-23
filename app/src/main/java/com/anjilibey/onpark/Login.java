@@ -15,6 +15,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,15 +28,20 @@ import static android.support.v4.content.ContextCompat.startActivity;
 
 
 public class Login extends AppCompatActivity {
-    @BindView(R.id.etEmail) EditText etEmail;
-    @BindView(R.id.etPassword) EditText etPassword;
-    @BindView(R.id.btnLogin) Button btnLogin;
-    @BindView(R.id.btnRegister) Button btnRegister;
+    @BindView(R.id.etEmail)
+    EditText etEmail;
+    @BindView(R.id.etPassword)
+    EditText etPassword;
+    @BindView(R.id.btnLogin)
+    Button btnLogin;
+    @BindView(R.id.btnRegister)
+    Button btnRegister;
     ProgressDialog loading;
 
     Login mContext;
     BaseApiService mApiService;
     SharedPrefManager sharedPrefManager;
+    String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,19 +71,19 @@ public class Login extends AppCompatActivity {
 
         // Code berikut berfungsi untuk mengecek session, Jika session true ( sudah login )
         // maka langsung memulai MainActivity.
-        if (sharedPrefManager.getSPSudahLogin()){
+        if (sharedPrefManager.getSPSudahLogin()) {
             startActivity(new Intent(Login.this, MainActivity.class)
                     .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
             finish();
         }
     }
 
-    private void requestLogin(){
+    private void requestLogin() {
         mApiService.loginRequest(etEmail.getText().toString(), etPassword.getText().toString())
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if (response.isSuccessful()){
+                        if (response.isSuccessful()) {
                             loading.dismiss();
                             startActivity(new Intent(mContext, MainActivity.class));
                             finish();
@@ -93,6 +99,5 @@ public class Login extends AppCompatActivity {
                     }
                 });
     }
-
-
 }
+

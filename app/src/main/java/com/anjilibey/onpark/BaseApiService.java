@@ -23,7 +23,7 @@ public interface BaseApiService {
             "Content-type : application/json"
     })
     @FormUrlEncoded
-    @POST("http://10.203.254.215:8000/api/auth/login/")
+    @POST("http://onparking.tk/api/auth/login/")
     Call<ResponseBody> loginRequest(@Field("email") String email,
                                     @Field("password") String password);
 
@@ -33,25 +33,25 @@ public interface BaseApiService {
             "Content-type : application/json"
     })
     @FormUrlEncoded
-    @POST("http://10.203.254.215:8000/api/auth/student/register/")
+    @POST("http://onparking.tk/api/auth/student/register/")
     Call<ResponseBody> registerRequest(
-            @Field("name") String nama,
+            @Field("name") String name,
             @Field("email") String email,
             @Field("password") String password,
             @Field("nif") String nif,
-            @Field("majors") String prodi
+            @Field("majors") String majors
     );
     @Headers({
             "Accept : application/json",
             "Content-type : application/json"
     })
     @FormUrlEncoded
-    @POST("http://10.203.254.215:8000/api/auth/operator/register/")
+    @POST("http://onparking.tk/api/auth/operator/register/")
     Call<ResponseBody> registerOpRequest(
-            @Field("name") String nama,
+            @Field("name") String name,
             @Field("email") String email,
             @Field("password") String password,
-            @Field("operator_number") String noPeg
+            @Field("operator_number") String operator_number
     );
 
 }

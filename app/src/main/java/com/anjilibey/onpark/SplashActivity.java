@@ -21,6 +21,6 @@ public class SplashActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), Login.class));
                 finish();
             }
-        }, 3000L); //3000 L = 3 detik
+        }, 2000L); //3000 L = 3 detik
     }
 }

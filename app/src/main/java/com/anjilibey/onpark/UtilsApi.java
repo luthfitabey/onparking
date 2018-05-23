@@ -12,7 +12,7 @@ import org.json.JSONObject;
 public class UtilsApi {
     private String vnama, vemail, vpassword, vnif, vprodi;
 
-    public static final String BASE_URL_API = "http://10.203.254.215:8000/api/auth/";
+    public static final String BASE_URL_API = "http://onparking.tk/api/auth/";
 
     // Mendeklarasikan Interface BaseApiService
     public static BaseApiService getAPIService(){
