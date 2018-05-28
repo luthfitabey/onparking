@@ -85,6 +85,18 @@ public class Login extends AppCompatActivity {
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if (response.isSuccessful()) {
                             loading.dismiss();
+                            String token = null;
+                            try {
+                                JSONObject jsonRESULTS = new JSONObject(response.body().string());
+                                token = jsonRESULTS.getJSONObject("meta").getString("token");
+                                Log.d("token", "berhasil");
+                                Log.d("hasil token", token);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            sharedPrefManager.saveSPString(SharedPrefManager.SP_TOKEN, token);
                             startActivity(new Intent(mContext, MainActivity.class));
                             finish();
                         } else {
@@ -98,6 +110,7 @@ public class Login extends AppCompatActivity {
                         loading.dismiss();
                     }
                 });
+
     }
 }
 

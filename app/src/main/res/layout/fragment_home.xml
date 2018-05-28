@@ -2,13 +2,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".parkir">
+    tools:context=".home">
 
     <TextView
+        android:id="@+id/textPark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="89dp"
+        android:text="Kendaraan Anda Diparkir di .." />
+
+    <Button
+        android:id="@+id/btnDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="Fragment home"
-        android:textSize="30sp"/>
+        android:layout_marginBottom="143dp"
+        android:onClick="abc"
+        android:text="Detail" />
 
 </RelativeLayout>
