@@ -4,80 +4,105 @@
     android:layout_height="match_parent"
     tools:context=".kendaraan">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text=""
-        android:textSize="30sp"/>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:orientation="vertical"
+    android:padding="10dp">
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/txtPlat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/editText2"
-        android:layout_alignStart="@+id/textView2"
         android:text="Jenis Kendaraan" />
+    <EditText
+        android:id="@+id/etPlat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="sans-serif"
+        android:inputType="textPersonName"
+        android:hint="plat" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/txtKendaraan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="157dp"
-        android:text="Plat Nomor" />
+        android:text="Jenis Kendaraan"
+        android:layout_marginTop="20dp"/>
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="171dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/textView2"
-        android:layout_marginEnd="50dp"
-        android:layout_marginTop="0dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="plat" />
 
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="184dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/editText"
-        android:layout_marginTop="218dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="motor/mobil" />
+    <RadioGroup
+        android:id="@+id/jk"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="61dp"
-        android:text="Get Barcode" />
+        <RadioButton
+            android:id="@+id/rdMotor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="Motor" />
+        <RadioButton
+            android:id="@+id/rdMobil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="Mobil" />
+
+    </RadioGroup>
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/txtMerk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/textView3"
-        android:layout_marginBottom="188dp"
-        android:text="Merk/Tipe" />
-
+        android:text="Jenis Kendaraan"
+        android:layout_marginTop="20dp"/>
     <EditText
-        android:id="@+id/editText3"
-        android:layout_width="191dp"
+        android:id="@+id/etMerk"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView4"
-        android:layout_alignStart="@+id/editText"
-        android:ems="10"
+        android:layout_gravity="center"
+        android:fontFamily="sans-serif"
         android:inputType="textPersonName"
-        android:text="Honda, Yamaha, Suzuki" />
+        android:hint="Suzuki, Honda, Yamaha" />
+    <TextView
+        android:id="@+id/txtTipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tipe Kendaraan"
+        android:layout_marginTop="20dp"/>
+    <EditText
+        android:id="@+id/etTipe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="sans-serif"
+        android:inputType="textPersonName"
+        android:hint="Supra X, Juoiter" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="40dp">
+
+        <Button
+            android:id="@+id/btnSimpan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Simpan" />
+        <Button
+            android:id="@+id/btnGetBarcode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Get Barcode" />
+    </LinearLayout>
+
+
+</LinearLayout>
 </RelativeLayout>

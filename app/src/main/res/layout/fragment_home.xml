@@ -14,14 +14,24 @@
         android:layout_marginTop="89dp"
         android:text="Kendaraan Anda Diparkir di .." />
 
+
     <Button
-        android:id="@+id/btnDetail"
+        android:id="@+id/btnLogOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="143dp"
-        android:onClick="abc"
-        android:text="Detail" />
+        android:layout_marginBottom="86dp"
+        android:text="Log Out" />
+
+    <TextView
+        android:id="@+id/txtParkir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="177dp"
+        android:textSize="30dp"
+        android:text="" />
 
 </RelativeLayout>

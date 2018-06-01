@@ -6,120 +6,144 @@
     android:layout_height="match_parent"
     tools:context=".profil">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="85dp"
-        android:layout_marginTop="38dp"
-        android:text="Nama" />
 
-    <TextView
-        android:id="@+id/txtNama"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageView"
-        android:layout_alignStart="@+id/textView"
-        android:text="Nama" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_marginTop="60dp">
 
-    <View
-        android:id="@+id/divider2"
-        android:layout_width="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="20dp"
-        android:background="?android:attr/listDivider"
-        android:layout_below="@id/txtNama"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/textView"
-        android:layout_marginTop="170dp"
-        android:text="NIF" />
-    <TextView
-        android:id="@+id/txtNif"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/textView"
-        android:layout_marginTop="208dp"
-        android:layout_below="@id/textView6"
-        android:text="NIF" />
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    app:srcCompat="@drawable/ic_account_circle_black_24dp"
+                    tools:ignore="VectorDrawableCompat" />
+                <TextView
+                    android:id="@+id/txta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email      :"
+                    android:layout_weight="1"/>
+                <EditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                   />
 
-    <View
-        android:id="@+id/divider3"
-        android:layout_width="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="20dp"
-        android:background="?android:attr/listDivider"
-        android:layout_below="@id/txtNif"/>
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textView"
-        android:layout_alignTop="@+id/imageView3"
-        android:text="Prodi" />
 
-    <TextView
-        android:id="@+id/txtProdi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/textView"
-        android:layout_marginBottom="169dp"
-        android:text="Prodi" />
+            </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="34dp"
-        android:layout_height="42dp"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView"
-        android:layout_marginStart="22dp"
-        app:srcCompat="@drawable/ic_account_circle_black_24dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="40dp">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/imageView"
-        android:layout_alignTop="@+id/textView6"
-        app:srcCompat="@android:drawable/ic_menu_agenda" />
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    app:srcCompat="@android:drawable/ic_menu_agenda" />
+                <TextView
+                    android:id="@+id/txtb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nama      :"
+                    android:layout_weight="1"/>
+                <EditText
+                    android:id="@+id/etNama"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                     />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/txtProdi"
-        android:layout_alignEnd="@+id/imageView"
-        app:srcCompat="@android:drawable/ic_input_get" />
+            </LinearLayout>
 
-    <Button
-        android:id="@+id/btnSimpan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/btnEdit"
-        android:layout_marginEnd="51dp"
-        android:text="Simpan" />
 
-    <Button
-        android:id="@+id/btnEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="28dp"
-        android:layout_marginStart="132dp"
-        android:text="Edit" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="40dp">
 
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    app:srcCompat="@android:drawable/ic_menu_day" />
+                <TextView
+                    android:id="@+id/txtc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NIF     :"
+                    android:layout_weight="1"/>
+                <EditText
+                    android:id="@+id/etNif"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                     />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="40dp">
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    app:srcCompat="@android:drawable/ic_input_get" />
+                <TextView
+                    android:id="@+id/txtd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Prodi     :"
+                    android:layout_weight="1"/>
+                <EditText
+                    android:id="@+id/etProdi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="50dp">
+
+                <Button
+                    android:id="@+id/btnSimpan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Simpan" />
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
 
 </RelativeLayout>

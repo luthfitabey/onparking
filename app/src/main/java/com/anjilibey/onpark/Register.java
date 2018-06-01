@@ -97,6 +97,7 @@ public class Register extends AppCompatActivity {
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
                         Log.e("debug", "onFailure: ERROR > " + t.getMessage());
                         Toast.makeText(mContext, "Koneksi Internet Bermasalah", Toast.LENGTH_SHORT).show();
+                        loading.dismiss();
                     }
                 });
     }

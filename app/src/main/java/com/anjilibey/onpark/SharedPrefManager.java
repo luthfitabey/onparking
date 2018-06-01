@@ -9,9 +9,9 @@ import android.content.SharedPreferences;
 
 public class SharedPrefManager {
     public static final String SP_ONPARK = "spOnPark";
-    public static final String SP_NAMA = "spNama";
     public static final String SP_TOKEN = "spToken";
     public static final String SP_SUDAH_LOGIN = "spSudahLogin";
+
 
     SharedPreferences sp;
     SharedPreferences.Editor spEditor;
@@ -25,10 +25,10 @@ public class SharedPrefManager {
         spEditor.commit();
     }
 
+    public String getSpToken (){return sp.getString(SP_TOKEN, "token"); }
     public Boolean getSPSudahLogin(){
         return sp.getBoolean(SP_SUDAH_LOGIN, false);
     }
-    public String getSpToken (){return sp.getString(SP_TOKEN, "token");}
 
 
 }

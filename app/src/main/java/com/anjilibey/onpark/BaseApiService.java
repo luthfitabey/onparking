@@ -23,17 +23,17 @@ public interface BaseApiService {
             "Content-type : application/json"
     })
     @FormUrlEncoded
-    @POST("http://10.203.192.201:8000/api/auth/login/")
+    @POST("http://10.203.253.33:8000/api/auth/login/")
     Call<ResponseBody> loginRequest(@Field("email") String email,
                                     @Field("password") String password);
 
-    // Fungsi ini untuk memanggil API login http opo cok
+    // Fungsi ini untuk memanggil API login
     @Headers({
             "Accept : application/json",
             "Content-type : application/json"
     })
     @FormUrlEncoded
-    @POST("10.203.192.201:8000/api/auth/student/register/")
+    @POST("10.203.253.33:8000/api/auth/student/register/")
     Call<ResponseBody> registerRequest(
             @Field("name") String name,
             @Field("email") String email,
@@ -46,7 +46,7 @@ public interface BaseApiService {
             "Content-type : application/json"
     })
     @FormUrlEncoded
-    @POST("http://10.203.192.201:8000/api/auth/operator/register/")
+    @POST("http://10.203.253.33:8000/api/auth/operator/register/")
     Call<ResponseBody> registerOpRequest(
             @Field("name") String name,
             @Field("email") String email,
@@ -55,4 +55,18 @@ public interface BaseApiService {
     );
     @GET("token")
     Call<ResponseToken> getToken();
+
+    @Headers({
+            "Accept:application/json",
+            "Content-type:application/json",
+            "Authorization:Bearer $2y$10$N2pDmA.R1yUPOJzE50GmbuJMWb1/6OYZgXLw4jui4jAcFQyV.zdC."
+    })
+    @FormUrlEncoded
+    @POST("http://10.203.253.33:8000/api/student/vehicle/add")
+    Call<ResponseBody> vehicleRequest(
+            @Field("license_plate") String license_plate,
+            @Field("kind") String kind,
+            @Field("brand") String brand,
+            @Field("type") String type
+    );
 }

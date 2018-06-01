@@ -1,6 +1,8 @@
 package com.anjilibey.onpark;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -22,8 +25,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 
-public class profil extends Fragment {
+public class profil extends Fragment implements View.OnClickListener {
     TextView mEmail, mName, mNIF, mMajors;
+    Button mEdit;
 
     public static profil newInstance() {
         profil fragment = new profil();
@@ -35,7 +39,7 @@ public class profil extends Fragment {
         super.onCreate(savedInstanceState);
 
         String url =
-                "http://10.203.192.201:8000/api/student/profile";
+                "http://10.203.253.33:8000/api/student/profile";
 
         FetchData fetchData = new FetchData();
         fetchData.execute(url);
@@ -46,12 +50,19 @@ public class profil extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profil, container, false);
 
-        //mEmail = view.findViewById(R.id.txt);
-        mName = view.findViewById(R.id.txtNama);
-        mNIF = view.findViewById(R.id.txtNif);
-        mMajors = view.findViewById(R.id.txtProdi);
+       mEmail = view.findViewById(R.id.etEmail);
+        mName = view.findViewById(R.id.etNama);
+        mNIF = view.findViewById(R.id.etNif);
+        mMajors = view.findViewById(R.id.etProdi);
+        mEdit = view.findViewById(R.id.btnSimpan);
+        mEdit.setOnClickListener(this);
 
         return view;
+    }
+
+    @Override
+    public void onClick(View v) {
+        startActivity(new Intent(getContext(), UbahProfil.class));
     }
 
     public class FetchData extends AsyncTask<String, Void, String> {
@@ -101,21 +112,21 @@ public class profil extends Fragment {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             String email, name, nif, majors;
-            Log.d("TesS", s);
+            //Log.d("TesS", s);
             try {
                 JSONObject jsonObject = new JSONObject(s);
-                //email = jsonObject.getJSONObject("data").getString("email");
+                email = jsonObject.getJSONObject("data").getString("email");
                 JSONObject studentObject = jsonObject.getJSONObject("data").getJSONObject("student");
                 name = studentObject.getJSONObject("data").getString("name");
                 nif = studentObject.getJSONObject("data").getString("nif");
                 majors = studentObject.getJSONObject("data").getString("majors");
 
-                //Log.d("GetEmail", email);
+                Log.d("GetEmail", email);
                 Log.d("GetName", name);
                 Log.d("GetNIF", nif);
                 Log.d("GetMajors", majors);
 
-               // mEmail.setText(email);
+                mEmail.setText(email);
                 mName.setText(name);
                 mNIF.setText(nif);
                 mMajors.setText(majors);
