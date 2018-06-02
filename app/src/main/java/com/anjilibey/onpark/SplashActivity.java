@@ -18,9 +18,9 @@ public class SplashActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                startActivity(new Intent(getApplicationContext(), Login.class));
                 finish();
             }
-        }, 2000L); //3000 L = 3 detik
+        }, 500L); //3000 L = 3 detik
     }
 }

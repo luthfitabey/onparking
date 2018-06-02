@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UbahProfil">
+    tools:context=".fragment_profil_worker">
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="120dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,12 +32,12 @@
                 android:layout_height="wrap_content"
                 android:text="Email      :"
                 android:layout_weight="1"/>
-            <TextView
-                android:id="@+id/txtEmail"
+            <EditText
+                android:id="@+id/etEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="anjilibey@gmail.com" />
+                />
 
 
 
@@ -60,13 +61,13 @@
                 android:layout_height="wrap_content"
                 android:text="Nama      :"
                 android:layout_weight="1"/>
-            <TextView
-                android:id="@+id/txtNama"
+            <EditText
+                android:id="@+id/etNama"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:hint="bagas adi" />
+                />
 
         </LinearLayout>
 
@@ -87,65 +88,37 @@
                 android:id="@+id/txtc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="NIF     :"
+                android:text="Number     :"
                 android:layout_weight="1"/>
-            <TextView
-                android:id="@+id/txtNif"
+            <EditText
+                android:id="@+id/etNumb"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:hint="11546" />
+                />
 
         </LinearLayout>
+
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:layout_marginTop="40dp">
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                app:srcCompat="@android:drawable/ic_input_get" />
-            <TextView
-                android:id="@+id/txtd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Prodi     :"
-                android:layout_weight="1"/>
-            <TextView
-                android:id="@+id/txtProdi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="komsi" />
+            android:layout_marginTop="60dp">
 
+            <Button
+                android:id="@+id/btnSimpan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Simpan" />
         </LinearLayout>
-
-
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:orientation="horizontal"-->
-            <!--android:layout_marginTop="50dp">-->
-
-            <!--<Button-->
-                <!--android:id="@+id/btnSimpan"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="Simpan" />-->
-        <!--</LinearLayout>-->
 
 
 
 
     </LinearLayout>
-
-
-
 
 </RelativeLayout>

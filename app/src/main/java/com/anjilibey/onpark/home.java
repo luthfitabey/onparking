@@ -43,7 +43,7 @@ public class home extends Fragment implements View.OnClickListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String url =
-                "http://10.203.253.33:8000/api/student/parking";
+                "http://10.203.241.42:8000/api/student/parking";
 
         FetchData fetchData = new FetchData();
         fetchData.execute(url);

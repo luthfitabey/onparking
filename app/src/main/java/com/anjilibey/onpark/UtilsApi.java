@@ -12,7 +12,7 @@ import org.json.JSONObject;
 public class UtilsApi {
     private String vnama, vemail, vpassword, vnif, vprodi;
 
-    public static final String BASE_URL_API = "http://10.203.253.33:8000/api/";
+    public static final String BASE_URL_API = "http://10.203.241.42:8000";
 
     // Mendeklarasikan Interface BaseApiService
     public static BaseApiService getAPIService(){

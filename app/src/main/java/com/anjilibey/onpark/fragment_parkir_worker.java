@@ -1,6 +1,7 @@
 package com.anjilibey.onpark;
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -16,16 +17,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.MultiFormatWriter;
-import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
-import com.journeyapps.barcodescanner.BarcodeEncoder;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,25 +35,25 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class kendaraan extends Fragment implements View.OnClickListener {
+public class fragment_parkir_worker extends Fragment implements View.OnClickListener {
     EditText metPlat;
-    RadioButton mrdMotor;
-    RadioButton mrdMobil;
-    EditText metMerk;
-    EditText metTipe;
-    Button mbtnGetBarcode;
+    RadioButton mrdGP;
+    RadioButton mrdHY;
+    RadioButton mrdSV;
+    RadioGroup metJK;
+    Button mbtnScanBarcode;
+    Button mbtnSimpan;
     ProgressDialog loading;
     ContentResolver contentResolver;
-    RadioGroup metJK;
+    Context context = this.getContext();
     RadioButton radioButton;
-    Button mbtnSimpan;
-    Bitmap QRCode;
-ImageView mImageQRCode;
+
+
 
     Context mContext = getContext();
     BaseApiService mApiService;
-    public static kendaraan newInstance() {
-        kendaraan fragment = new kendaraan();
+    public static fragment_parkir_worker newInstance() {
+        fragment_parkir_worker fragment = new fragment_parkir_worker();
         return fragment;
     }
 
@@ -69,29 +66,32 @@ ImageView mImageQRCode;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_parkir, container, false);
+        View view = inflater.inflate(R.layout.fragment_fragment_parkir_worker, container, false);
         mApiService = UtilsApi.getAPIService();
 
         metPlat = view.findViewById(R.id.etPlat);
         metJK = view.findViewById(R.id.jk);
-        metMerk = view.findViewById(R.id.etMerk);
-        metTipe = view.findViewById(R.id.etTipe);
         mbtnSimpan = view.findViewById(R.id.btnSimpan);
-        mbtnGetBarcode = view.findViewById(R.id.btnGetBarcode);
+        mbtnScanBarcode = view.findViewById(R.id.btnScanBarcode);
         mbtnSimpan.setOnClickListener(this);
-        mImageQRCode = view.findViewById(R.id.imageViewQRCode);
-        mbtnGetBarcode.setOnClickListener(this);
+        mbtnScanBarcode.setOnClickListener(this);
+
         metJK.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
-                    case R.id.rdMobil:
-                        radioButton = metJK.findViewById(R.id.rdMobil);
+                    case R.id.rdGP:
+                        radioButton = metJK.findViewById(R.id.rdGP);
                         Log.d("Selected: ", radioButton.getText().toString());
                         break;
 
-                    case R.id.rdMotor:
-                        radioButton = metJK.findViewById(R.id.rdMotor);
+                    case R.id.rdSV:
+                        radioButton = metJK.findViewById(R.id.rdSV);
+                        Log.d("Selected: ", radioButton.getText().toString());
+                        break;
+
+                    case R.id.rdHY:
+                        radioButton = metJK.findViewById(R.id.rdHY);
                         Log.d("Selected: ", radioButton.getText().toString());
                         break;
                 }
@@ -105,11 +105,9 @@ ImageView mImageQRCode;
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnSimpan:
-                mApiService.vehicleRequest(
+                mApiService.parkingRequest(
                         metPlat.getText().toString(),
-                        radioButton.getText().toString(),
-                        metMerk.getText().toString(),
-                        metTipe.getText().toString())
+                        radioButton.getText().toString())
                         .enqueue(new Callback<ResponseBody>() {
                             @Override
                             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -127,26 +125,29 @@ ImageView mImageQRCode;
                         });
 
                 break;
-            case R.id.btnGetBarcode:
-                String licenseNumber = metPlat.getText().toString();
-                Log.d("Queued LicensePlate", licenseNumber);
-                if (licenseNumber.isEmpty()){
-                    Toast.makeText(getContext(),"Masukkan Plat Nomor Terlebih dahulu", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
-                    try {
-                        BitMatrix bitMatrix = multiFormatWriter.encode(licenseNumber, BarcodeFormat.QR_CODE, 300, 300);
-                        BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
-                        Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
-                        QRCode = bitmap;
-
-                        mImageQRCode.setImageBitmap(bitmap);
-                    } catch (WriterException e) {
-                        e.printStackTrace();
-                    }
-                    break;
-                }
+            case R.id.btnScanBarcode:
+                IntentIntegrator.forSupportFragment(this).initiateScan();
+                Log.d("Scan button", "Clicked");
+            break;
         }
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+
+        if (intentResult.getContents() != null) {
+            if (resultCode == Activity.RESULT_CANCELED) {
+                Log.d("Canceled, result code: ", ""+resultCode);
+                Toast.makeText(context, "Scan gagal", Toast.LENGTH_SHORT).show();
+            } else if (resultCode == Activity.RESULT_OK) {
+                String licensePlate = intentResult.getContents();
+                Log.d("OK, result code: ", ""+resultCode);
+
+                metPlat.setText(licensePlate);
+            }
+
+        }
+
     }
 }

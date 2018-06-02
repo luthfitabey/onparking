@@ -6,6 +6,9 @@
     <string name="item_1">Home</string>
     <string name="item_2">Profil</string>
     <string name="item_3">Kendaraan</string>
+    <string name="item_1_worker">Home</string>
+    <string name="item_2_worker">Profil</string>
+    <string name="item_3_worker">Parkir</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

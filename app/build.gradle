@@ -35,4 +35,6 @@ dependencies {
     implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     testImplementation 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    implementation 'com.journeyapps:zxing-android-embedded:3.4.0'
+    implementation 'com.google.zxing:core:3.2.1'
 }

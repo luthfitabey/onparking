@@ -32,16 +32,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class profil extends Fragment implements View.OnClickListener {
-    TextView mEmail, mName, mNIF, mMajors;
+public class fragment_profil_worker extends Fragment implements View.OnClickListener {
+    TextView mEmail, mName, mNumb;
     Button mEdit;
     BaseApiService mApiService;
     Context mContext = getContext();
     ProgressDialog loading;
-    public Integer identify;
 
-    public static profil newInstance() {
-        profil fragment = new profil();
+    public static fragment_profil_worker newInstance() {
+        fragment_profil_worker fragment = new fragment_profil_worker();
         return fragment;
     }
 
@@ -50,7 +49,7 @@ public class profil extends Fragment implements View.OnClickListener {
         super.onCreate(savedInstanceState);
 
         String url =
-                "http://10.203.241.42:8000/api/student/profile";
+                "http://10.203.241.42:8000/api/operator/profile";
 
         FetchData fetchData = new FetchData();
         fetchData.execute(url);
@@ -59,19 +58,17 @@ public class profil extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_profil, container, false);
+        View view = inflater.inflate(R.layout.fragment_fragment_profil_worker, container, false);
 
         mEmail = view.findViewById(R.id.etEmail);
         mName = view.findViewById(R.id.etNama);
-        mNIF = view.findViewById(R.id.etNif);
-        mMajors = view.findViewById(R.id.etProdi);
+        mNumb = view.findViewById(R.id.etNumb);
         mEdit = view.findViewById(R.id.btnSimpan);
         mEdit.setOnClickListener(this);
         mApiService = UtilsApi.getAPIService();
 
         return view;
     }
-
     public class FetchData extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... strings) {
@@ -86,7 +83,7 @@ public class profil extends Fragment implements View.OnClickListener {
                 connection.setRequestMethod("GET");
                 connection.setRequestProperty("Accept", "application/json");
                 connection.setRequestProperty("Content-type", "application/json");
-                connection.setRequestProperty("Authorization", "Bearer $2y$10$N2pDmA.R1yUPOJzE50GmbuJMWb1/6OYZgXLw4jui4jAcFQyV.zdC.");
+                connection.setRequestProperty("Authorization", "Bearer $2y$10$rIyUZRvhyzB2u5pd43bKpeHaYytciGz5tkQFYwgVzDgkyDd0oDJX6");
                 connection.connect();
 
                 int response = connection.getResponseCode();
@@ -118,29 +115,22 @@ public class profil extends Fragment implements View.OnClickListener {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            String email, name, nif, majors;
-            int id;
+            String email, name, number;
             //Log.d("TesS", s);
             try {
                 JSONObject jsonObject = new JSONObject(s);
                 email = jsonObject.getJSONObject("data").getString("email");
-                JSONObject studentObject = jsonObject.getJSONObject("data").getJSONObject("student");
-                name = studentObject.getJSONObject("data").getString("name");
-                nif = studentObject.getJSONObject("data").getString("nif");
-                majors = studentObject.getJSONObject("data").getString("majors");
-                id = studentObject.getJSONObject("data").getInt("id");
+                JSONObject operatorObject = jsonObject.getJSONObject("data").getJSONObject("operator");
+                name = operatorObject.getJSONObject("data").getString("name");
+                number = operatorObject.getJSONObject("data").getString("operator_number");
 
                 Log.d("GetEmail", email);
                 Log.d("GetName", name);
-                Log.d("GetNIF", nif);
-                Log.d("GetMajors", majors);
-                Log.d("getId", id+"");
+                Log.d("GetNIF", number);
 
                 mEmail.setText(email);
                 mName.setText(name);
-                mNIF.setText(nif);
-                mMajors.setText(majors);
-                identify = id;
+                mNumb.setText(number);
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -151,10 +141,10 @@ public class profil extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnSimpan:
-                mApiService.profileRequest(
+                mApiService.operatorRequest(
+                        mEmail.getText().toString(),
                         mName.getText().toString(),
-                        mNIF.getText().toString(),
-                        mMajors.getText().toString())
+                        mNumb.getText().toString())
                         .enqueue(new Callback<ResponseBody>() {
                             @Override
                             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -174,6 +164,9 @@ public class profil extends Fragment implements View.OnClickListener {
                 break;
         }
     }
-
-
 }
+
+
+
+
+

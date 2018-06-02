@@ -16,7 +16,7 @@
         android:id="@+id/txtPlat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Jenis Kendaraan" />
+        android:text="Plat Kendaraan" />
     <EditText
         android:id="@+id/etPlat"
         android:layout_width="match_parent"
@@ -25,7 +25,6 @@
         android:fontFamily="sans-serif"
         android:inputType="textPersonName"
         android:hint="plat" />
-
     <TextView
         android:id="@+id/txtKendaraan"
         android:layout_width="wrap_content"
@@ -33,11 +32,17 @@
         android:text="Jenis Kendaraan"
         android:layout_marginTop="20dp"/>
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:orientation="horizontal"
+    android:layout_weight="1">
 
     <RadioGroup
         android:id="@+id/jk"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
 
         <RadioButton
             android:id="@+id/rdMotor"
@@ -54,12 +59,22 @@
 
     </RadioGroup>
 
+            <ImageView
+                android:id="@+id/imageViewQRCode"
+                android:layout_width="60dp"
+                android:layout_height="120dp"
+                android:layout_weight="2"/>
+
+</LinearLayout>
+
+
+
     <TextView
         android:id="@+id/txtMerk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Jenis Kendaraan"
-        android:layout_marginTop="20dp"/>
+        android:text="Merk Kendaraan"
+        android:layout_marginTop="10dp"/>
     <EditText
         android:id="@+id/etMerk"
         android:layout_width="match_parent"
